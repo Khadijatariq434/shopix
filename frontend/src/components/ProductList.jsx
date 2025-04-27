@@ -248,7 +248,7 @@ const ProductList = () => {
                     className="h-60 w-full flex items-center justify-center overflow-hidden cursor-pointer"
                   >
                     <img
-                      src={`http://localhost:5000/${product.image}`}
+                      src={`https://shopix-backend-yzwb.onrender.com/${product.image}`}
                       alt={product.name}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
