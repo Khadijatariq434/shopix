@@ -194,7 +194,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/user/login", {
+      const res = await fetch("https://shopix-backend-yzwb.onrender.com/api/user/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -218,7 +218,7 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     setIsGoogleLoading(true);
-    window.open("http://localhost:5000/auth/google", "_self");
+    window.open("https://shopix-backend-yzwb.onrender.com/auth/google", "_self");
   };
 
   if (isPageLoading) {
