@@ -135,7 +135,7 @@ const CategoryList = () => {
     
     // Set a timeout to ensure loading lasts at least 3 seconds
     const loadingTimer = setTimeout(() => {
-      fetch(`http://localhost:5000/api/products?category=${category}`)
+      fetch(`https://shopix-backend-yzwb.onrender.com/api/products?category=${category}`)
         .then((res) => res.json())
         .then((data) => {
           setProducts(data.products);
@@ -249,7 +249,7 @@ const CategoryList = () => {
                       className="h-60 w-full flex items-center justify-center overflow-hidden cursor-pointer"
                     >
                       <img
-                        src={`http://localhost:5000/${product.image}`}
+                        src={`https://shopix-backend-yzwb.onrender.com/${product.image}`}
                         alt={product.name}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
