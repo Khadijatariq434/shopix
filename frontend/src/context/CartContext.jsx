@@ -1,35 +1,28 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useRef,
-  useMemo,
-  useCallback,
-} from "react";
+import { createContext, useContext, useState, useEffect, useMemo } from "react";
 import { useAuth } from "./AuthContext"; // Import Auth Context
-import { set } from "mongoose";
 import { AppContext } from "./AppContext";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const { user } = useAuth(); // Get user from AuthContext
-  // const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
-  const {cart, setCart}=useContext(AppContext)
+  const { cart, setCart } = useContext(AppContext);
 
+  // Set your Render API URL
+  const backendUrl = "https://shopix-backend-yzwb.onrender.com"; // Replace with your Render API URL
 
   // Fetch cart items when the context loads
-  const fetchCart =  async () => {
-    if (!user || !user.token){
+  const fetchCart = async () => {
+    if (!user || !user.token) {
       setCart([]);
-      setLoading(false)
-     return;
-     } // Prevent fetch if user is not logged in
+      setLoading(false);
+      return;
+    }
+
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:5000/api/cart", {
+      const res = await fetch(`${backendUrl}/api/cart`, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       const data = await res.json();
@@ -41,7 +34,7 @@ export const CartProvider = ({ children }) => {
     } finally {
       setTimeout(() => {
         setLoading(false);
-      }, 3000); // Ensures loading is visible for at least 2 seconds
+      }, 3000); // Ensures loading is visible for at least 3 seconds
     }
   };
 
@@ -49,7 +42,7 @@ export const CartProvider = ({ children }) => {
   const addToCart = async (productId) => {
     if (!user || !user.token) return;
     try {
-      const res = await fetch("http://localhost:5000/api/cart/add", {
+      const res = await fetch(`${backendUrl}/api/cart/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -73,7 +66,7 @@ export const CartProvider = ({ children }) => {
   const removeFromCart = async (productId) => {
     if (!user || !user.token) return;
     try {
-      await fetch("http://localhost:5000/api/cart/remove", {
+      await fetch(`${backendUrl}/api/cart/remove`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -91,7 +84,7 @@ export const CartProvider = ({ children }) => {
   const updateCart = async (productId, quantity) => {
     if (!user || !user.token) return;
     try {
-      const res = await fetch("http://localhost:5000/api/cart/update", {
+      const res = await fetch(`${backendUrl}/api/cart/update`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -112,19 +105,20 @@ export const CartProvider = ({ children }) => {
     fetchCart();
   }, [user]); // Refetch cart when user changes
 
-  const cartContextValue = useMemo(() => ({
-    cart,
-    loading,
-    addToCart,
-    removeFromCart,
-    updateCart,
-    fetchCart,
-  }), [ cart, loading ]);
+  const cartContextValue = useMemo(
+    () => ({
+      cart,
+      loading,
+      addToCart,
+      removeFromCart,
+      updateCart,
+      fetchCart,
+    }),
+    [cart, loading]
+  );
 
   return (
-    <CartContext.Provider
-      value={cartContextValue}
-    >
+    <CartContext.Provider value={cartContextValue}>
       {children}
     </CartContext.Provider>
   );
