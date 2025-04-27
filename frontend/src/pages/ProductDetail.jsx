@@ -21,7 +21,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/products/${id}`);
+        const res = await fetch(`https://shopix-backend-yzwb.onrender.com/api/products/${id}`);
         const data = await res.json();
         if (!res.ok) throw new Error(data.error);
         setProduct(data);
@@ -48,7 +48,7 @@ const ProductDetail = () => {
       try {
         // In a real app, you'd fetch similar products based on category or tags
         // Mock data for now
-        const res = await fetch('http://localhost:5000/api/products?limit=4');
+        const res = await fetch('https://shopix-backend-yzwb.onrender.com/api/products?limit=4');
         const data = await res.json();
         setSimilarProducts(data.products || data);
       } catch (err) {
@@ -169,7 +169,7 @@ const ProductDetail = () => {
           <div className="space-y-4">
             <div className="bg-gray-50 rounded-xl overflow-hidden aspect-square flex items-center justify-center border">
               <img
-                src={`http://localhost:5000/${product.images ? product.images[activeImage] : product.image}`}
+                src={`https://shopix-backend-yzwb.onrender.com/${product.images ? product.images[activeImage] : product.image}`}
                 alt={product.name}
                 className="w-full h-full object-contain p-4"
               />
@@ -186,7 +186,7 @@ const ProductDetail = () => {
                       ${activeImage === idx ? 'border-blue-600' : 'border-gray-200'}`}
                   >
                     <img
-                      src={`http://localhost:5000/${img}`}
+                      src={`https://shopix-backend-yzwb.onrender.com/${img}`}
                       alt={`${product.name} - view ${idx + 1}`}
                       className="w-full h-full object-cover"
                     />
