@@ -55,7 +55,7 @@ const Checkout = () => {
 
       console.log("Order Data:", orderData);
 
-      const response = await axios.post("http://localhost:5000/api/orders", orderData, {
+      const response = await axios.post("https://shopix-backend-yzwb.onrender.com/api/orders", orderData, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
 
