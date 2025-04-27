@@ -182,7 +182,7 @@ const OrderList = () => {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:5000/api/orders", {
+      const response = await axios.get("https://shopix-backend-yzwb.onrender.com/api/orders", {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       setOrders(response.data);
@@ -197,7 +197,7 @@ const OrderList = () => {
   const cancelOrder = async (orderId) => {
     try {
       toast.loading("Cancelling your order...");
-      await axios.delete(`http://localhost:5000/api/orders/${orderId}`, {
+      await axios.delete(`https://shopix-backend-yzwb.onrender.com/api/orders/${orderId}`, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       toast.dismiss();
