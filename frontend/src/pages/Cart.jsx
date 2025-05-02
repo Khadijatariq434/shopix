@@ -420,7 +420,7 @@ const Cart = () => {
                   <div className="col-span-1 md:col-span-6 flex items-center space-x-4">
                     <div className="relative flex-shrink-0">
                       <img
-                        src={`http://localhost:5000/${item.productId.image}`}
+                        src={`https://shopix-backend-yzwb.onrender.com/uploads/${item.productId.image}`}
                         alt={item.productId.name || "Product"}
                         className="w-20 h-20 md:w-24 md:h-24 object-cover rounded-lg border border-gray-200"
                       />
