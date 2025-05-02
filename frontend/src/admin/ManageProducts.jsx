@@ -206,7 +206,7 @@ const ManageProducts = () => {
               >
                 <div className="relative h-52 overflow-hidden bg-gray-100">
                   <img
-                    src={`http://localhost:5000/${product.image}`}
+                    src={`https://shopix-backend-yzwb.onrender.com/uploads/${product.image}`}
                     alt={product.name}
                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                   />
