@@ -27,7 +27,12 @@ const app = express();
 // Middleware
 app.use(express.json()); // Parse JSON data
 app.use(express.urlencoded({ extended: true })); // For form data
-app.use(cors({ origin: "http://localhost:5173", credentials: true })); // Enable CORS
+app.use(cors({
+  origin: ["https://shopix-khlf.onrender.com", "http://localhost:5173"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 app.use(morgan("dev")); // Log requests
 connectDB();
 
