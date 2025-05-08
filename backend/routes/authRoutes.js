@@ -32,7 +32,7 @@ router.get(
     );
     console.log("Token generated for Google login:", token);
     // Redirect to the frontend with the token as a query parameter
-    res.redirect(`http://localhost:5173/dashboard?token=${token}`);
+    res.redirect(`https://shopix-khlf.onrender.com//dashboard?token=${token}`);
   }
 );
 
